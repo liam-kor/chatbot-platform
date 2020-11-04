@@ -1,0 +1,17 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateField",
+      "model": "ConditionStatus",
+      "field": "block",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "ConditionStatus",
+      "field": "blockId",
+      "arity": "Optional"
+    }
+  ]
+}

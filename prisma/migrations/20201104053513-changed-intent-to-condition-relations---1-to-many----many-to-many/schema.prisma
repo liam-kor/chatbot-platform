@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = "***"
+}
+
+model User {
+  id                      Int         @default(autoincrement()) @id
+  bot_user_key            String      @unique
+  service                 Service
+  status                  UserStatus?
+  createdAt               DateTime?   @default(now())
+  updatedAt               DateTime?   @default(now())
+}
+
+model Service {
+  id             Int         @default(autoincrement()) @id
+  name           String      @unique
+  users          User[]
+  createdAt      DateTime?   @default(now())
+  updatedAt      DateTime?   @default(now())
+}
+
+model UserStatus {
+  id                      Int         @default(autoincrement()) @id
+  user                    User        @relation(fields: [userId], references: [id])
+  userId                  Int
+  intent_code             String?
+}
+
+model Intent {
+  id             Int         @default(autoincrement()) @id
+  name           String      @unique
+  code           String      @unique
+  type           String?
+  conditions     Condition[]
+  blocks         Block[]
+}
+
+model Condition {
+  id                  Int         @default(autoincrement()) @id
+  name                String
+  code                String
+  intents             Intent[]
+  conditionStatuses   ConditionStatus[]
+}
+
+model ConditionStatus {
+  id                  Int         @default(autoincrement()) @id
+  condition           Condition  @relation(fields: [conditionId], references: [id])
+  conditionId         Int
+  block               Block      @relation(fields: [blockId], references: [id])
+  blockId             Int
+}
+
+model Block {
+  id                  Int               @default(autoincrement()) @id
+  intent              Intent            @relation(fields: [intentId], references: [id])
+  intentId            Int
+  conditionsStatuses  ConditionStatus[]
+}

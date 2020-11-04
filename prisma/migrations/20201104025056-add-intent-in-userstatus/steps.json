@@ -1,0 +1,70 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "UserStatus",
+      "field": "intent",
+      "type": "Intent",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "UserStatus",
+          "field": "intent"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "UserStatus",
+          "field": "intent"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[intentId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "UserStatus",
+          "field": "intent"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "UserStatus",
+      "field": "intentId",
+      "type": "Int",
+      "arity": "Optional"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "UserStatus",
+      "field": "intent_code"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Intent",
+      "field": "users",
+      "type": "User",
+      "arity": "List"
+    }
+  ]
+}

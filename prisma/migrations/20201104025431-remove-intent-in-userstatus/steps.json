@@ -1,0 +1,27 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "UserStatus",
+      "field": "intent_code",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "UserStatus",
+      "field": "intent"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "UserStatus",
+      "field": "intentId"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Intent",
+      "field": "users"
+    }
+  ]
+}

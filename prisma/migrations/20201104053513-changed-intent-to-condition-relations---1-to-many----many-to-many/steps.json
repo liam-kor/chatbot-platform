@@ -1,0 +1,22 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Condition",
+      "field": "intents",
+      "type": "Intent",
+      "arity": "List"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Condition",
+      "field": "intent"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Condition",
+      "field": "intentId"
+    }
+  ]
+}
