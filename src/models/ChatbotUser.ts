@@ -1,7 +1,7 @@
 import { objectType } from '@nexus/schema';
 
-export const User = objectType({
-  name: 'User',
+export const ChatbotUser = objectType({
+  name: 'ChatbotUser',
   definition(t) {
     t.model.id();
     t.model.bot_user_key();

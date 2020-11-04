@@ -3,6 +3,7 @@ import { applyMiddleware } from 'graphql-middleware';
 import { createContext, prisma } from './context';
 import express from 'express';
 import { schema } from './schema';
+import { getCalculatedConditionStatuses } from './services';
 
 const schemaWithMiddleware = applyMiddleware(schema);
 
@@ -16,10 +17,10 @@ server.applyMiddleware({ app });
 
 const router = express.Router();
 router.get('/', async (req, res) => {
-  const intent_code = req.query.intent_code;
+  const intentCode = req.query.intent_code;
   const intent = await prisma.intent.findOne({
     where: {
-      code: intent_code,
+      code: intentCode,
     },
     include: {
       blocks: true,
@@ -31,7 +32,13 @@ router.get('/', async (req, res) => {
     },
   });
   console.log(intent);
-  const selected_condition = intent.conditions[0].conditionStatuses[0];
+
+  const conditions = await getCalculatedConditionStatuses(intent.conditions);
+
+  console.log(conditions);
+  // const nonMember = [{ id: 1 }, { id: 3 }];
+  // const nonAuth = [{ id: 4 }];
+  // const member = [{ id: 3 }, { id: 2 }];
 
   const block = await prisma.block.findMany({
     where: {
@@ -40,12 +47,11 @@ router.get('/', async (req, res) => {
       },
       conditionStatuses: {
         every: {
-          id: 2,
+          OR: conditions,
         },
       },
     },
   });
-
   console.log(block);
 
   res.send('ok');

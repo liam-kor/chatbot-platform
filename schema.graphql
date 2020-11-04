@@ -13,6 +13,13 @@ input BlockWhereUniqueInput {
   id: Int
 }
 
+type ChatbotUser {
+  bot_user_key: String!
+  createdAt: DateTime
+  id: Int!
+  updatedAt: DateTime
+}
+
 type Condition {
   code: String!
   conditionStatuses(after: ConditionStatusWhereUniqueInput, before: ConditionStatusWhereUniqueInput, first: Int, last: Int): [ConditionStatus!]!
@@ -22,7 +29,7 @@ type Condition {
 }
 
 type ConditionStatus {
-  block: Block!
+  block: Block
   condition: Condition!
   description: String
   id: Int!
@@ -55,12 +62,5 @@ input IntentWhereUniqueInput {
 }
 
 type Query {
-  ok: Boolean!
-}
-
-type User {
-  bot_user_key: String!
-  createdAt: DateTime
-  id: Int!
-  updatedAt: DateTime
+  chatbotUsers: [ChatbotUser!]
 }

@@ -13,6 +13,8 @@ export interface Context {
 }
 
 export function createContext(request: { req: express.Request }): Context {
+  console.log(request.req.body.query);
+  console.log(request.req.body.variables);
   return {
     request,
     prisma,
