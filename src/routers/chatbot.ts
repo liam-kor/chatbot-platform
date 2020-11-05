@@ -1,45 +1,22 @@
 import express from 'express';
 import { prisma } from '../context';
-import { getCalculatedConditionStatuses } from '../services';
+import {
+  getCalculatedConditionStatuses,
+  getIntentByCode,
+  getBlockByConditions,
+} from '../services';
 
 export const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const intentCode = req.query.intent_code;
-  const intent = await prisma.intent.findOne({
-    where: {
-      code: intentCode,
-    },
-    include: {
-      blocks: true,
-      conditions: {
-        include: {
-          conditionStatuses: true,
-        },
-      },
-    },
-  });
+  const intentCode = String(req.query.intent_code);
+  const intent = await getIntentByCode(intentCode);
   console.log(intent);
 
   const conditions = await getCalculatedConditionStatuses(intent.conditions);
-
   console.log(conditions);
-  // const nonMember = [{ id: 1 }, { id: 3 }];
-  // const nonAuth = [{ id: 4 }];
-  // const member = [{ id: 3 }, { id: 2 }];
 
-  const block = await prisma.block.findMany({
-    where: {
-      intent: {
-        id: intent.id,
-      },
-      conditionStatuses: {
-        every: {
-          OR: conditions,
-        },
-      },
-    },
-  });
+  const block = await getBlockByConditions(intent.id, conditions);
   console.log(block);
 
   res.send('ok');

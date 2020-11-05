@@ -1,17 +1,21 @@
 import { prisma } from '../context';
+import { Condition } from './Condition';
 
-export const getIntentByCode = async (intentCode: string) => {
+interface Intent {
+  id: number;
+  name: string;
+  code: string;
+  type: string;
+  conditions: Condition[];
+}
+
+export const getIntentByCode = async (intentCode: string): Promise<Intent> => {
   return await prisma.intent.findOne({
     where: {
       code: intentCode,
     },
     include: {
-      blocks: true,
-      conditions: {
-        include: {
-          conditionStatuses: true,
-        },
-      },
+      conditions: true,
     },
   });
 };

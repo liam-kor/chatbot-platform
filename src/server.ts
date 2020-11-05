@@ -1,6 +1,6 @@
 import { ApolloServer } from 'apollo-server-express';
 import { applyMiddleware } from 'graphql-middleware';
-import { createContext, prisma } from './context';
+import { createContext } from './context';
 import express from 'express';
 import { schema } from './schema';
 import { router } from './routers';
@@ -13,11 +13,8 @@ const server = new ApolloServer({
 });
 
 const app = express();
+app.use('/api', router);
 server.applyMiddleware({ app });
-
-// const router = express.Router();
-
-app.use('/test', router);
 
 app.listen({ port: 4000 }, () =>
   process.stdout.write(
