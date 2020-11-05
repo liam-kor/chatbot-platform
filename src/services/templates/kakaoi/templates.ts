@@ -8,6 +8,7 @@ import {
   Thumbnail,
   Button,
   Profile,
+  QuickReply,
 } from './types';
 
 export const createTemplate = (
@@ -17,6 +18,17 @@ export const createTemplate = (
   return {
     outputs: components,
     quickReplies: quickReplies,
+  };
+};
+
+export const createQuickReply = (label, intentCode): QuickReply => {
+  return {
+    label: label,
+    action: 'block',
+    blockId: 'blockId',
+    extra: {
+      intentCode: intentCode,
+    },
   };
 };
 

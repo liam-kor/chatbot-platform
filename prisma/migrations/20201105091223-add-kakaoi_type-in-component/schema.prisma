@@ -4,12 +4,12 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 model ChatbotUser {
   id                      Int         @default(autoincrement()) @id
-  botUserKey            String      @unique
+  bot_user_key            String      @unique
   service                 Service
   status                  ChatbotUserStatus?
   createdAt               DateTime?   @default(now())
@@ -28,7 +28,7 @@ model ChatbotUserStatus {
   id                      Int                @default(autoincrement()) @id
   chatbotUser             ChatbotUser        @relation(fields: [chatbotUserId], references: [id])
   chatbotUserId           Int
-  intentCode             String?
+  intent_code             String?
 }
 
 model Intent {
@@ -71,7 +71,7 @@ model Block {
 model Component {
   id                  Int               @default(autoincrement()) @id
   blocks              Block[]
-  kakaoiType         String            @default("SimpleText")
+  kakaoi_type         String            @default("SimpleText")
   text                String?
   imageUrl            String?
 }

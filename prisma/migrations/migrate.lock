@@ -14,3 +14,5 @@
 20201105084025-add-component--link--component-data
 20201105084341-add-intent-in-link
 20201105084746-add-description-in-block
+20201105091223-add-kakaoi_type-in-component
+20201105091749-change-snakecase-to-camelcase

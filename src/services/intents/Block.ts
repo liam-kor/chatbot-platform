@@ -13,6 +13,7 @@ export interface Block {
 interface Component {
   id: number;
   text: string;
+  kakaoiType: string;
   imageUrl: string;
   componentDataId: number;
 }

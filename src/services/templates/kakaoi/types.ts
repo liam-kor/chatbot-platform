@@ -17,9 +17,9 @@ export type Action = 'message' | 'block' | 'webLink' | 'phone';
 export interface QuickReply {
   label: string;
   action: Action;
-  messageText: string;
+  messageText?: string;
   blockId: string;
-  extra: any;
+  extra?: any;
 }
 
 export interface SimpleText {

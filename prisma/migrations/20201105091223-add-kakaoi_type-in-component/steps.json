@@ -1,0 +1,37 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Component",
+      "field": "kakaoi_type",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Component",
+          "field": "kakaoi_type"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Component",
+          "field": "kakaoi_type"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "\"SimpleText\""
+    }
+  ]
+}

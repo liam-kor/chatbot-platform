@@ -1,0 +1,77 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "ChatbotUser",
+      "field": "botUserKey",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ChatbotUser",
+          "field": "botUserKey"
+        },
+        "directive": "unique"
+      }
+    },
+    {
+      "tag": "DeleteField",
+      "model": "ChatbotUser",
+      "field": "bot_user_key"
+    },
+    {
+      "tag": "CreateField",
+      "model": "ChatbotUserStatus",
+      "field": "intentCode",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "ChatbotUserStatus",
+      "field": "intent_code"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Component",
+      "field": "kakaoiType",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Component",
+          "field": "kakaoiType"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Component",
+          "field": "kakaoiType"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "\"SimpleText\""
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Component",
+      "field": "kakaoi_type"
+    }
+  ]
+}
