@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 model ChatbotUser {
@@ -65,7 +65,6 @@ model Block {
   conditionStatuses   ConditionStatus[]
   components          Component[]
   links               Link[]
-  description         String?
 }
 
 model Component {
@@ -79,7 +78,6 @@ model Link {
   id                  Int               @default(autoincrement()) @id
   label               String
   blocks              Block[]
-  intent              Intent
 }
 
 model ComponentData {

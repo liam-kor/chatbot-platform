@@ -10,3 +10,7 @@
 20201104055805-midified-block-column-name
 20201104070054-modified-block-can-be-null-in-condition-status
 20201104091722-modified-model-name-user-to-chatbot-user
+20201105070801-modified-relation-block-to-conditionstatus
+20201105084025-add-component--link--component-data
+20201105084341-add-intent-in-link
+20201105084746-add-description-in-block

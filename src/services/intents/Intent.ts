@@ -1,7 +1,7 @@
-import { prisma } from '../context';
+import { prisma } from '../../context';
 import { Condition } from './Condition';
 
-interface Intent {
+export interface Intent {
   id: number;
   name: string;
   code: string;
@@ -10,6 +10,8 @@ interface Intent {
 }
 
 export const getIntentByCode = async (intentCode: string): Promise<Intent> => {
+  console.log('check intent code');
+  console.log(intentCode);
   return await prisma.intent.findOne({
     where: {
       code: intentCode,

@@ -6,6 +6,5 @@ export const Block = objectType({
     t.model.id();
     t.model.intent();
     t.model.conditionStatuses();
-    t.model.text();
   },
 });

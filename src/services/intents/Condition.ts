@@ -1,4 +1,4 @@
-import { prisma } from '../context';
+import { prisma } from '../../context';
 
 export interface Condition {
   id: number;
@@ -26,6 +26,9 @@ export const getCalculatedConditionStatuses = async (
     } else if (condition.code === 'exists_member') {
       const cond = await getConditionStatus(condition.id, checkIsMember());
       calculatedConditionStatuses.push(cond[0]);
+    } else if (condition.code === 'is_gaming') {
+      const cond = await getConditionStatus(condition.id, checkIsGaming());
+      calculatedConditionStatuses.push(cond[0]);
     } else {
       //
     }
@@ -52,5 +55,9 @@ const checkIsAuth = () => {
 };
 
 const checkIsMember = () => {
+  return 1;
+};
+
+const checkIsGaming = () => {
   return 1;
 };

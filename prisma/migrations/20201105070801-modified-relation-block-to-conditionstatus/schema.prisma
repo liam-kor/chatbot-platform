@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 model ChatbotUser {
@@ -63,27 +63,5 @@ model Block {
   intent              Intent            @relation(fields: [intentId], references: [id])
   intentId            Int
   conditionStatuses   ConditionStatus[]
-  components          Component[]
-  links               Link[]
-  description         String?
-}
-
-model Component {
-  id                  Int               @default(autoincrement()) @id
-  blocks              Block[]
   text                String?
-  imageUrl            String?
-}
-
-model Link {
-  id                  Int               @default(autoincrement()) @id
-  label               String
-  blocks              Block[]
-  intent              Intent
-}
-
-model ComponentData {
-  id                  Int               @default(autoincrement()) @id
-  code                String            @unique
-  components          Component[]
 }

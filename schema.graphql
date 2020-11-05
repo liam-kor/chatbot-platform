@@ -6,7 +6,6 @@ type Block {
   conditionStatuses(after: ConditionStatusWhereUniqueInput, before: ConditionStatusWhereUniqueInput, first: Int, last: Int): [ConditionStatus!]!
   id: Int!
   intent: Intent!
-  text: String
 }
 
 input BlockWhereUniqueInput {
@@ -29,7 +28,7 @@ type Condition {
 }
 
 type ConditionStatus {
-  block: Block
+  block(after: BlockWhereUniqueInput, before: BlockWhereUniqueInput, first: Int, last: Int): [Block!]!
   condition: Condition!
   description: String
   id: Int!

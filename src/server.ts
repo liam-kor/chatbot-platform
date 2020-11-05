@@ -16,8 +16,8 @@ const app = express();
 app.use('/api', router);
 server.applyMiddleware({ app });
 
-app.listen({ port: 4000 }, () =>
+app.listen({ port: 8080 }, () =>
   process.stdout.write(
-    `🚀 Server ready at http://localhost:4000${server.graphqlPath}`,
+    `🚀 Server ready at http://localhost:8080${server.graphqlPath}`,
   ),
 );

@@ -1,0 +1,225 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateModel",
+      "model": "Component"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Component",
+      "field": "id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Component",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Component",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Component",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "Component",
+      "field": "blocks",
+      "type": "Block",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Component",
+      "field": "text",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Component",
+      "field": "imageUrl",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "Link"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Link",
+      "field": "id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Link",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Link",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Link",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "Link",
+      "field": "label",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Link",
+      "field": "blocks",
+      "type": "Block",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "ComponentData"
+    },
+    {
+      "tag": "CreateField",
+      "model": "ComponentData",
+      "field": "id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ComponentData",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ComponentData",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ComponentData",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "ComponentData",
+      "field": "code",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ComponentData",
+          "field": "code"
+        },
+        "directive": "unique"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "ComponentData",
+      "field": "components",
+      "type": "Component",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Block",
+      "field": "components",
+      "type": "Component",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Block",
+      "field": "links",
+      "type": "Link",
+      "arity": "List"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Block",
+      "field": "text"
+    }
+  ]
+}
