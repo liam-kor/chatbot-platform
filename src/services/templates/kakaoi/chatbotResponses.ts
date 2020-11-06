@@ -1,32 +1,39 @@
-import { Block } from '../../intents';
-import {
-  BasicCard,
-  ChatbotResponse,
-  Template,
-  SimpleImage,
-  SimpleText,
-  Thumbnail,
-  Button,
-  Profile,
-} from './types';
+import { Component, Link } from '../../intents';
+import { ChatbotResponse } from './types';
 import {
   createTemplate,
   createSimpleText,
   createQuickReply,
+  createListCard,
+  createListItem,
 } from './templates';
 
-export const createChatbotResponse = (block: Block): ChatbotResponse => {
-  const components = block.components;
-  const links = block.links;
+export const createChatbotResponse = (
+  components: Component[],
+  links: Link[],
+): ChatbotResponse => {
   const kakaoiComponents = [];
   const kakaoiQuickReplies = [];
   for (const component of components) {
     if (component.kakaoiType === 'SimpleText') {
-      kakaoiComponents.push(createSimpleText(component.text));
+      let text = component.text;
+      if (component.componentData) {
+        text = component.componentData.text;
+      }
+      kakaoiComponents.push(createSimpleText(text));
+    } else if (component.kakaoiType === 'ListCard') {
+      const header = createListItem(component.componentData.header.imageUrl);
+      const listItems = [];
+      for (const data of component.componentData.listItemData) {
+        listItems.push(
+          createListItem(data.imageUrl, data.title, data.description),
+        );
+      }
+      kakaoiComponents.push(createListCard(header, listItems));
     }
   }
   for (const link of links) {
-    kakaoiQuickReplies.push(createQuickReply(link.label, link.intent.code));
+    kakaoiQuickReplies.push(createQuickReply(link.label, link.intentCode));
   }
 
   return {

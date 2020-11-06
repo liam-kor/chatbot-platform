@@ -13,6 +13,7 @@ input BlockWhereUniqueInput {
 }
 
 type ChatbotUser {
+  botUserKey: String!
   createdAt: DateTime
   id: Int!
   updatedAt: DateTime

@@ -1,34 +1,20 @@
 import { prisma } from '../../context';
 import { ConditionStatus } from './Condition';
-import { Intent } from './Intent';
+import { LinkModel } from './Link';
+import { ComponentModel } from './Component';
 
-export interface Block {
+export interface BlockModel {
   id: number;
   intentId: number;
   description: string;
-  components: Component[];
-  links: Link[];
-}
-
-interface Component {
-  id: number;
-  text: string;
-  kakaoiType: string;
-  imageUrl: string;
-  componentDataId: number;
-}
-
-interface Link {
-  id: number;
-  label: string;
-  intentId: number;
-  intent: Intent;
+  components: ComponentModel[];
+  links: LinkModel[];
 }
 
 export const getBlockByConditionStatuses = async (
   intentId: number,
   conditionStatuses: ConditionStatus[],
-): Promise<Block> => {
+): Promise<BlockModel> => {
   const Blocks = await prisma.block.findMany({
     where: {
       intent: {
@@ -41,7 +27,14 @@ export const getBlockByConditionStatuses = async (
       },
     },
     include: {
-      components: true,
+      components: {
+        orderBy: {
+          order: 'asc',
+        },
+        include: {
+          ComponentData: true,
+        },
+      },
       links: {
         include: {
           intent: true,

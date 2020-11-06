@@ -3,6 +3,8 @@ import {
   getCalculatedConditionStatuses,
   getIntentByCode,
   getBlockByConditionStatuses,
+  createComponents,
+  createLinks,
 } from '../services/intents';
 import { createChatbotResponse } from '../services/templates/kakaoi';
 export const router = express.Router();
@@ -13,13 +15,19 @@ router.get('/', async (req, res) => {
   const intent = await getIntentByCode(intentCode);
   console.log(intent);
   console.log('Next');
-  const conditions = await getCalculatedConditionStatuses(intent.conditions);
-  console.log(conditions);
+  const conditionModels = await getCalculatedConditionStatuses(
+    intent.conditions,
+  );
+  console.log(conditionModels);
 
-  const block = await getBlockByConditionStatuses(intent.id, conditions);
-  console.log(block);
-
-  res.send(createChatbotResponse(block));
+  const blockModel = await getBlockByConditionStatuses(
+    intent.id,
+    conditionModels,
+  );
+  console.log(blockModel);
+  const components = createComponents(blockModel.components);
+  const links = createLinks(blockModel.links);
+  res.send(createChatbotResponse(components, links));
 });
 
 router.post('/', async (req, res) => {
