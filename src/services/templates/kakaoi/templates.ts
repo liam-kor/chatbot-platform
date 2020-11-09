@@ -12,6 +12,8 @@ import {
   QuickReply,
 } from './types';
 
+export const TEMPLATE_VERSION = '2.0';
+
 export const createTemplate = (
   components: (SimpleText | SimpleImage | BasicCard | ListCard)[],
   quickReplies = [],

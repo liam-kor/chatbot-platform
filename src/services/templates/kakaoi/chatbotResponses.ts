@@ -1,6 +1,7 @@
 import { Component, Link } from '../../intents';
 import { ChatbotResponse } from './types';
 import {
+  TEMPLATE_VERSION,
   createTemplate,
   createSimpleText,
   createQuickReply,
@@ -8,7 +9,54 @@ import {
   createListItem,
 } from './templates';
 
-export const createChatbotResponse = (
+export const createDynamicChatbotResponse = (
+  blockCode: string,
+): ChatbotResponse => {
+  if (blockCode === 'game:have_a_meal:practice1') {
+    const menuList = [
+      {
+        product_name: '소프트콘',
+        product_price: 3000,
+        product_image:
+          'http://image.newdaily.co.kr/site/data/img/2018/08/14/2018081400127_0.jpg',
+      },
+      {
+        product_name: '소프트콘',
+        product_price: 3000,
+        product_image:
+          'http://image.newdaily.co.kr/site/data/img/2018/08/14/2018081400127_0.jpg',
+      },
+    ];
+    const menuHeader = {
+      image:
+        'http://image.newdaily.co.kr/site/data/img/2018/08/14/2018081400127_0.jpg',
+    };
+    const items = [];
+    const header = createListItem(menuHeader.image);
+    for (const menu of menuList) {
+      const item = createListItem(
+        menu.product_image,
+        menu.product_name,
+        menu.product_price + '원',
+      );
+      items.push(item);
+    }
+    return {
+      version: TEMPLATE_VERSION,
+      template: {
+        outputs: [createListCard(header, items)],
+      },
+    };
+  }
+  return {
+    version: TEMPLATE_VERSION,
+    template: {
+      outputs: [],
+    },
+  };
+};
+
+export const createStaticChatbotResponse = (
   components: Component[],
   links: Link[],
 ): ChatbotResponse => {

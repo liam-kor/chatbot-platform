@@ -6,7 +6,10 @@ import {
   createComponents,
   createLinks,
 } from '../services/intents';
-import { createChatbotResponse } from '../services/templates/kakaoi';
+import {
+  createDynamicChatbotResponse,
+  createStaticChatbotResponse,
+} from '../services/templates/kakaoi';
 export const router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -25,9 +28,13 @@ router.get('/', async (req, res) => {
     conditionModels,
   );
   console.log(blockModel);
-  const components = createComponents(blockModel.components);
-  const links = createLinks(blockModel.links);
-  res.send(createChatbotResponse(components, links));
+  if (blockModel.isDynamic) {
+    res.send(createDynamicChatbotResponse(blockModel.code));
+  } else {
+    const components = createComponents(blockModel.components);
+    const links = createLinks(blockModel.links);
+    res.send(createStaticChatbotResponse(components, links));
+  }
 });
 
 router.post('/', async (req, res) => {

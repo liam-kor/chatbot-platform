@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 model ChatbotUser {
@@ -76,7 +76,7 @@ model Block {
   links               Link[]
   description         String?
   code                String            @default("None")
-  isDynamic           Boolean           @default(false)
+  is_dynamic          Boolean           @default(false)
   dataSet             DataSet[]
 }
 

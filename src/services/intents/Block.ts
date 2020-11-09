@@ -7,8 +7,10 @@ export interface BlockModel {
   id: number;
   intentId: number;
   description: string;
+  code: string;
   components: ComponentModel[];
   links: LinkModel[];
+  isDynamic: boolean;
 }
 
 export const getBlockByConditionStatuses = async (
@@ -30,9 +32,6 @@ export const getBlockByConditionStatuses = async (
       components: {
         orderBy: {
           order: 'asc',
-        },
-        include: {
-          ComponentData: true,
         },
       },
       links: {
