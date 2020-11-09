@@ -1,0 +1,63 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateField",
+      "model": "Intent",
+      "field": "scenario",
+      "arity": "Required"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Intent",
+      "field": "scenarioId",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Block",
+      "field": "code",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Block",
+          "field": "code"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Block",
+          "field": "code"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "\"None\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "Block",
+      "field": "dataSet",
+      "type": "DataSet",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "DataSet",
+      "field": "blocks",
+      "type": "Block",
+      "arity": "List"
+    }
+  ]
+}

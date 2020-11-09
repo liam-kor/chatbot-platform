@@ -1,23 +1,14 @@
-import {
-  ComponentData,
-  ComponentDataModel,
-  getComponentData,
-} from './ComponentData';
-
 export interface ComponentModel {
   id: number;
   text: string;
   kakaoiType: string;
   imageUrl: string;
-  componentDataId: number;
-  ComponentData: ComponentDataModel;
 }
 
 export interface Component {
   text: string;
   kakaoiType: string;
   imageUrl: string;
-  componentData?: ComponentData;
 }
 
 export const createComponents = (
@@ -31,19 +22,9 @@ export const createComponents = (
 };
 
 const createComponent = (componentModel: ComponentModel): Component => {
-  console.log(componentModel.ComponentData);
-  if (componentModel.ComponentData) {
-    return {
-      text: componentModel.text,
-      kakaoiType: componentModel.kakaoiType,
-      imageUrl: componentModel.imageUrl,
-      componentData: getComponentData(componentModel.ComponentData.code),
-    };
-  } else {
-    return {
-      text: componentModel.text,
-      kakaoiType: componentModel.kakaoiType,
-      imageUrl: componentModel.imageUrl,
-    };
-  }
+  return {
+    text: componentModel.text,
+    kakaoiType: componentModel.kakaoiType,
+    imageUrl: componentModel.imageUrl,
+  };
 };

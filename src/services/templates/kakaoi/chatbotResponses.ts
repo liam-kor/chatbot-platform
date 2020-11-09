@@ -16,20 +16,16 @@ export const createChatbotResponse = (
   const kakaoiQuickReplies = [];
   for (const component of components) {
     if (component.kakaoiType === 'SimpleText') {
-      let text = component.text;
-      if (component.componentData) {
-        text = component.componentData.text;
-      }
-      kakaoiComponents.push(createSimpleText(text));
+      kakaoiComponents.push(createSimpleText(component.text));
     } else if (component.kakaoiType === 'ListCard') {
-      const header = createListItem(component.componentData.header.imageUrl);
-      const listItems = [];
-      for (const data of component.componentData.listItemData) {
-        listItems.push(
-          createListItem(data.imageUrl, data.title, data.description),
-        );
-      }
-      kakaoiComponents.push(createListCard(header, listItems));
+      // const header = createListItem(component.componentData.header.imageUrl);
+      // const listItems = [];
+      // for (const data of component.componentData.listItemData) {
+      //   listItems.push(
+      //     createListItem(data.imageUrl, data.title, data.description),
+      //   );
+      // }
+      // kakaoiComponents.push(createListCard(header, listItems));
     }
   }
   for (const link of links) {
