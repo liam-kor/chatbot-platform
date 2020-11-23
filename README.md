@@ -1,9 +1,6 @@
-# ts-apollo-prisma
+# chatbot-platform
 
-[![CircleCI](https://circleci.com/gh/dooboolab/ts-apollo-prisma.svg?style=svg)](https://circleci.com/gh/dooboolab/ts-apollo-prisma)
-[![codecov](https://codecov.io/gh/dooboolab/ts-apollo-prisma/branch/master/graph/badge.svg)](https://codecov.io/gh/dooboolab/ts-apollo-prisma)
-
-> Boilerplate for typescript apollo server using prisma (known as Prisma 2).
+> The project was designed to create chatbot servers that make chatbot-based chatbot platforms such as Facebook, Kakao, and Naver more efficient.
 
 ## Specification
 * [node](https://nodejs.org)
